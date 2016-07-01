@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <title>Nossa Primeira App em Angular 2</title>
+        <meta charset="UTF8">
+        <meta name="viewport" content="width=device-widht, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+
+        <!-- 1. Carregar as bibliotecas -->
+            <!-- Polyfill for older browsers -->
+        <script src="node_modules/core-js/client/shim.min.js"></script>
+
+        <script src="node_modules/zone.js/dist/zone.js"></script>
+        <script src="node_modules/reflect-metadata/Reflect.js"></script>
+        <script src="node_modules/systemjs/dist/system.src.js"></script>
+
+        <!-- 2. Configuração do SystemJs-->
+        <script src="systemjs.config.js"></script>
+        <script>
+            System.import('app').catch(function(err){
+                console.error(err);
+            });
+        </script>
+    </head>
+    <!-- 3. Exibir a nossa aplicação -->
+    <body>
+        <my-app>Carregando.....</my-app>     
+    </body>
+</html>
