@@ -9,33 +9,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var mocks_1 = require('./mocks');
 var RacesComponent = (function () {
     function RacesComponent() {
         this.heading = "Ultra Racing Schedule";
         this.cash = 10000;
-        this.races = [{
-                "id": 1,
-                "name": "Daytona Thunderdome",
-                "date": new Date('2512-01-04T14:00:00'),
-                "about": "Race through the ruins of an ancient Florida battle arena.",
-                "entryFee": 3200,
-                "isRacing": false
-            }, {
-                "id": 2,
-                "name": "San Francisco Ruins",
-                "date": new Date('2512-07-03T20:00:00'),
-                "about": "Drift down the streets of a city almost sunk under the ocean.",
-                "entryFee": 4700,
-                "isRacing": true
-            }, {
-                "id": 3,
-                "name": "New York City Skyline",
-                "date": new Date('2512-07-12T21:00:00'),
-                "about": "Fly between buildings in the electronic sky.",
-                "entryFee": 4300,
-                "isRacing": true
-            }];
     }
+    RacesComponent.prototype.ngOnInit = function () {
+        this.races = mocks_1.RACES;
+    };
     RacesComponent.prototype.totalCost = function () {
         var sum = 0;
         for (var _i = 0, _a = this.races; _i < _a.length; _i++) {
@@ -51,7 +33,8 @@ var RacesComponent = (function () {
     RacesComponent = __decorate([
         core_1.Component({
             selector: 'my-races',
-            template: "\n    <h2>Cash left to enter races: {{cashLeft() | currency:'USD':true}} </h2>\n    <ul>\n      <li *ngFor=\"let race of races\">\n        <h2>{{race.name}} {{race.entryFee | currency:'USD':true}}</h2>\n        <p>{{race.date | date:'MMM d, y, h:MM a'}}</p>\n        <p>{{race.about}}</p>\n        <button *ngIf=\"!race.isRacing\">Enter Race</button>\n        <h3 *ngIf=\"race.isRacing\">Already Racing</h3>\n      </li>\n    </ul>\n    <h2>Total cost: {{totalCost() | currency:'USD':true}}</h2>\n  "
+            templateUrl: 'app/races.component.html',
+            styleUrls: ['app/races.component.css']
         }), 
         __metadata('design:paramtypes', [])
     ], RacesComponent);
