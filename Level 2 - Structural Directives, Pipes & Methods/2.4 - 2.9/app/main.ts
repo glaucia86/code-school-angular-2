@@ -6,13 +6,14 @@ import { Component } from '@angular/core';
     template:`<h1>{{heading}}</h1>
     <ul>
         <li *ngFor="let race of races">
-            <h2>{{race.name}}</h2>
-            <p>{{race.date}}</p>
+            <h2>{{race.name}} {{race.entryFee | currency: 'USD' :true}}</h2>
+            <p>{{race.date | date: 'MMM d, y, h:mm a'}}</p>
             <p>{{race.about}}</p>
             <button *ngIf="race.isRacing == false">Enter Race</button>
             <h3 *ngIf="race.isRacing == true">Already Race</h3>
         </li>
     </ul>
+    <h2>Total Cost: {{totalCost() | currency : 'USD' :true}}</h2>
  `
 })
 
@@ -38,8 +39,18 @@ export class AppComponent {
     "date": new Date('2512-07-12T21:00:00'),
     "about": "Fly between buildings in the electronic sky.",
     "entryFee": 4300,
-    "isRacing": false
-  }]
+    "isRacing": true
+  }];
+
+  /* Método para poder realizar a soma total dos preços das corridas somente  */
+  totalCost() {
+    let sum = 0;
+    for(let race of this.races) {
+      if(race.isRacing)
+        sum += race.entryFee
+    }
+    return sum;
+  }
 }
 
 bootstrap(AppComponent);
